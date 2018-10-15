@@ -11,46 +11,42 @@ import Photos
 
 class ImagePostViewController: ShiftableViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setImageViewHeight(with: 1.0)
-        
-        updateViews()
+    // MARK: - Properties
+    
+    var postController: PostController!
+    var post: Post?
+    
+    var imageData: Data? {
+        didSet {
+            guard let imageData = imageData else { return }
+            
+            // save image
+            image = UIImage(data: imageData)
+        }
     }
     
-    func updateViews() {
-        
-        guard let imageData = imageData,
-            let image = UIImage(data: imageData) else {
-                title = "New Post"
-                return
+    var image: UIImage? {
+        didSet {
+            updateViews()
         }
-        
-        title = post?.title
-        
-        setImageViewHeight(with: image.ratio)
-        
-        imageView.image = image
-        
-        chooseImageButton.setTitle("", for: [])
     }
     
-    private func presentImagePickerController() {
-        
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-            presentInformationalAlertController(title: "Error", message: "The photo library is unavailable")
-            return
-        }
-        
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.delegate = self
-        
-        imagePicker.sourceType = .photoLibrary
-
-        present(imagePicker, animated: true, completion: nil)
-    }
+    private let filter = CIFilter(name: "CIColorControls")!
+    private let filter2 = CIFilter(name: "CIHueAdjust")!
+    private let context = CIContext(options: nil) // use this to render ciimage back to cgimage
+    
+    // MARK: - Outlets/Actions
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var chooseImageButton: UIButton!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postButton: UIBarButtonItem!
+    
+    @IBOutlet weak var brightnessSlider: UISlider!
+    @IBOutlet weak var contrastSlider: UISlider!
+    @IBOutlet weak var saturationSlider: UISlider!
+    @IBOutlet weak var hueSlider: UISlider!
     
     @IBAction func createPost(_ sender: Any) {
         
@@ -58,8 +54,8 @@ class ImagePostViewController: ShiftableViewController {
         
         guard let imageData = imageView.image?.jpegData(compressionQuality: 0.1),
             let title = titleTextField.text, title != "" else {
-            presentInformationalAlertController(title: "Uh-oh", message: "Make sure that you add a photo and a caption before posting.")
-            return
+                presentInformationalAlertController(title: "Uh-oh", message: "Make sure that you add a photo and a caption before posting.")
+                return
         }
         
         postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio) { (success) in
@@ -105,22 +101,99 @@ class ImagePostViewController: ShiftableViewController {
         presentImagePickerController()
     }
     
-    func setImageViewHeight(with aspectRatio: CGFloat) {
+    @IBAction func changeBrightness(_ sender: UISlider) {
+        updateViews()
+    }
+    
+    @IBAction func changeContrast(_ sender: UISlider) {
+        updateViews()
+    }
+    
+    @IBAction func changeSaturation(_ sender: UISlider) {
+        updateViews()
+    }
+    
+    @IBAction func changeHue(_ sender: UISlider) {
+        updateViews()
+    }
+    
+    // MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setImageViewHeight(with: 1.0)
+        
+        updateViews()
+    }
+    
+    // MARK: - Methods
+    
+    private func setImageViewHeight(with aspectRatio: CGFloat) {
         
         imageHeightConstraint.constant = imageView.frame.size.width * aspectRatio
         
         view.layoutSubviews()
     }
     
-    var postController: PostController!
-    var post: Post?
-    var imageData: Data?
+    private func updateViews() {
+        
+//        guard let imageData = imageData,
+//            let originalImage = UIImage(data: imageData) else {
+//                title = "New Post"
+//                return
+//        }
+        guard let originalImage = image else {
+            title = "New Post"
+            return
+        }
+        
+        title = post?.title
+        
+        setImageViewHeight(with: originalImage.ratio)
+        
+        imageView.image = image(byFiltering: originalImage)
+        
+        chooseImageButton.setTitle("", for: [])
+    }
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var chooseImageButton: UIButton!
-    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var postButton: UIBarButtonItem!
+    private func image(byFiltering image: UIImage) -> UIImage? {
+        guard let cgImage = image.cgImage else { return image } // just return the image, if filtering failed
+        
+        let ciImage = CIImage(cgImage: cgImage)
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        filter.setValue(brightnessSlider.value, forKey: kCIInputBrightnessKey)
+        filter.setValue(contrastSlider.value, forKey: kCIInputContrastKey)
+        filter.setValue(saturationSlider.value, forKey: kCIInputSaturationKey)
+        
+        filter2.setValue(filter.outputImage, forKey: kCIInputImageKey)
+        filter2.setValue(hueSlider.value, forKey: kCIInputAngleKey)
+        
+        guard let outputCIImage = filter2.outputImage, let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else {
+            return nil
+        }// extent means the entire image
+        
+        return UIImage(cgImage: outputCGImage)
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    private func presentImagePickerController() {
+        
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            presentInformationalAlertController(title: "Error", message: "The photo library is unavailable")
+            return
+        }
+        
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
 }
 
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -131,11 +204,12 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         
         picker.dismiss(animated: true, completion: nil)
         
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        guard let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         
-        imageView.image = image
+//        imageView.image = image
+        image = chosenImage
         
-        setImageViewHeight(with: image.ratio)
+//        setImageViewHeight(with: chosenImage.ratio)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
