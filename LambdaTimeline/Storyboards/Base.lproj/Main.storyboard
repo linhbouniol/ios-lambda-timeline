@@ -156,7 +156,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-by-RF5">
-                                        <rect key="frame" x="10" y="421" width="355" height="144"/>
+                                        <rect key="frame" x="10" y="421" width="355" height="182"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HB2-lW-RzB">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -167,7 +167,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-OE-x9Z">
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-OE-x9Z">
                                                         <rect key="frame" x="88" y="0.0" width="269" height="31"/>
                                                         <connections>
                                                             <action selector="changeBrightness:" destination="1Aw-4e-BW2" eventType="valueChanged" id="dRg-MQ-2Bg"/>
@@ -184,7 +184,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-wb-IK8">
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-wb-IK8">
                                                         <rect key="frame" x="88" y="0.0" width="269" height="31"/>
                                                         <connections>
                                                             <action selector="changeContrast:" destination="1Aw-4e-BW2" eventType="valueChanged" id="4G7-8u-HLm"/>
@@ -201,7 +201,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="dG3-Wr-kLg">
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="dG3-Wr-kLg">
                                                         <rect key="frame" x="88" y="0.0" width="269" height="31"/>
                                                         <connections>
                                                             <action selector="changeSaturation:" destination="1Aw-4e-BW2" eventType="valueChanged" id="n6U-fW-TnF"/>
@@ -218,7 +218,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-3.1400000000000001" maxValue="3.1400000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="13F-KJ-l8x">
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-3.1400000000000001" maxValue="3.1400000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="13F-KJ-l8x">
                                                         <rect key="frame" x="88" y="0.0" width="269" height="31"/>
                                                         <connections>
                                                             <action selector="changeHue:" destination="1Aw-4e-BW2" eventType="valueChanged" id="JDG-U9-Ed2"/>
@@ -226,8 +226,27 @@
                                                     </slider>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Sr-Ha-IAn">
+                                                <rect key="frame" x="0.0" y="152" width="355" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Posterize" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eP-EV-3TQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="PO4-yl-eiM">
+                                                        <rect key="frame" x="88" y="0.0" width="269" height="31"/>
+                                                        <connections>
+                                                            <action selector="changeHue:" destination="1Aw-4e-BW2" eventType="valueChanged" id="Zvo-Ko-iVK"/>
+                                                            <action selector="changePosterize:" destination="1Aw-4e-BW2" eventType="valueChanged" id="Y0G-ZX-2hl"/>
+                                                        </connections>
+                                                    </slider>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="PO4-yl-eiM" firstAttribute="width" secondItem="13F-KJ-l8x" secondAttribute="width" id="XLw-NW-m7E"/>
                                             <constraint firstItem="13F-KJ-l8x" firstAttribute="width" secondItem="tBS-wb-IK8" secondAttribute="width" id="bmb-Rq-aDO"/>
                                             <constraint firstItem="dG3-Wr-kLg" firstAttribute="width" secondItem="tBS-wb-IK8" secondAttribute="width" id="prZ-uX-wvp"/>
                                             <constraint firstItem="ip8-OE-x9Z" firstAttribute="width" secondItem="tBS-wb-IK8" secondAttribute="width" id="rdq-lM-tf2"/>
@@ -272,6 +291,7 @@
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
+                        <outlet property="posterizeSlider" destination="PO4-yl-eiM" id="a4j-Yt-4yE"/>
                         <outlet property="saturationSlider" destination="dG3-Wr-kLg" id="HqH-Qj-AzY"/>
                         <outlet property="titleTextField" destination="Op6-OA-6Ou" id="JEe-cj-4mv"/>
                     </connections>

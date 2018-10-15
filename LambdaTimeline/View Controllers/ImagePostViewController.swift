@@ -208,6 +208,11 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         
 //        imageView.image = image
         image = chosenImage
+        brightnessSlider.isEnabled = true
+        contrastSlider.isEnabled = true
+        saturationSlider.isEnabled = true
+        hueSlider.isEnabled = true
+        posterizeSlider.isEnabled = true
         
 //        setImageViewHeight(with: chosenImage.ratio)
     }
