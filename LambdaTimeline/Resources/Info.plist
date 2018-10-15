@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>LambdaTimeline</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.873272785897-7rlq5dqbnu9sdhg6nqhl4cn3drnl7uad</string>
+				<string>com.googleusercontent.apps.824050315392-8lj00r6t8p0amj0bmt5i7abjc82andj0</string>
 			</array>
 		</dict>
 	</array>
