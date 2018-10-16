@@ -450,11 +450,105 @@
                         <outlet property="imageView" destination="Q0L-w5-qUw" id="0v7-ZB-mgi"/>
                         <outlet property="imageViewAspectRatioConstraint" destination="y1B-iX-x3e" id="wIt-kh-Tzd"/>
                         <outlet property="titleLabel" destination="jyy-BX-c2c" id="UEd-xO-ipC"/>
+                        <segue destination="u8L-Dj-hHx" kind="presentation" identifier="ShowAudioCommentVC" id="2v2-IU-dCm"/>
+                        <segue destination="2H6-2R-1A7" kind="presentation" identifier="ShowTextCommentVC" id="lZG-Zw-AZn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1969" y="454"/>
+        </scene>
+        <!--Text Comment View Controller-->
+        <scene sceneID="lSE-YM-4aU">
+            <objects>
+                <viewController id="2H6-2R-1A7" customClass="TextCommentViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9DU-cb-abS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I4v-Ed-dPS">
+                                <rect key="frame" x="16" y="81" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmR-nk-zif">
+                                <rect key="frame" x="169" y="201" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="done:" destination="2H6-2R-1A7" eventType="touchUpInside" id="ENb-Xy-hh4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I4v-Ed-dPS" firstAttribute="top" secondItem="ALA-MO-xpN" secondAttribute="top" constant="61" id="EmI-yD-EL6"/>
+                            <constraint firstItem="ALA-MO-xpN" firstAttribute="trailing" secondItem="BmR-nk-zif" secondAttribute="trailing" constant="169" id="L2A-PU-OCy"/>
+                            <constraint firstItem="I4v-Ed-dPS" firstAttribute="leading" secondItem="ALA-MO-xpN" secondAttribute="leading" constant="16" id="N2e-lA-iVT"/>
+                            <constraint firstItem="BmR-nk-zif" firstAttribute="top" secondItem="I4v-Ed-dPS" secondAttribute="bottom" constant="90" id="SoX-mH-Mlf"/>
+                            <constraint firstItem="ALA-MO-xpN" firstAttribute="trailing" secondItem="I4v-Ed-dPS" secondAttribute="trailing" constant="16" id="arO-bZ-LVp"/>
+                            <constraint firstItem="BmR-nk-zif" firstAttribute="leading" secondItem="ALA-MO-xpN" secondAttribute="leading" constant="169" id="mpU-Jk-Yns"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ALA-MO-xpN"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentTextField" destination="I4v-Ed-dPS" id="bxi-Jd-u8n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eba-eo-98A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2712.8000000000002" y="199.25037481259372"/>
+        </scene>
+        <!--Audio Comment View Controller-->
+        <scene sceneID="rxZ-y4-CWh">
+            <objects>
+                <viewController id="u8L-Dj-hHx" customClass="AudioCommentViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7VP-pX-D0z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S2K-fW-Rkx">
+                                <rect key="frame" x="163" y="273.5" width="49" height="120.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfU-As-1B5">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
+                                        <state key="normal" title="Record"/>
+                                        <connections>
+                                            <action selector="record:" destination="u8L-Dj-hHx" eventType="touchUpInside" id="LUD-PF-raK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiD-SY-fqA">
+                                        <rect key="frame" x="9.5" y="50" width="30" height="30"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="play:" destination="u8L-Dj-hHx" eventType="touchUpInside" id="3ed-jj-Dk7"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGt-4V-rHi">
+                                        <rect key="frame" x="5.5" y="100" width="38" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S2K-fW-Rkx" firstAttribute="centerX" secondItem="7VP-pX-D0z" secondAttribute="centerX" id="ErI-I2-Dvz"/>
+                            <constraint firstItem="S2K-fW-Rkx" firstAttribute="centerY" secondItem="7VP-pX-D0z" secondAttribute="centerY" id="ypT-lp-89B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q0T-Yz-4Ic"/>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="MiD-SY-fqA" id="DTd-tU-Ax4"/>
+                        <outlet property="recordButton" destination="HfU-As-1B5" id="6UR-uG-eqN"/>
+                        <outlet property="timeLabel" destination="tGt-4V-rHi" id="FJ3-TX-xgw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Nr-Fn-Wbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2724" y="904"/>
         </scene>
     </scenes>
 </document>
