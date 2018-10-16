@@ -33,6 +33,7 @@ class ImagePostViewController: ShiftableViewController {
     
     private let filter = CIFilter(name: "CIColorControls")!
     private let filter2 = CIFilter(name: "CIHueAdjust")!
+    private let filter3 = CIFilter(name: "CIColorPosterize")!
     private let context = CIContext(options: nil) // use this to render ciimage back to cgimage
     
     // MARK: - Outlets/Actions
@@ -47,6 +48,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var contrastSlider: UISlider!
     @IBOutlet weak var saturationSlider: UISlider!
     @IBOutlet weak var hueSlider: UISlider!
+    @IBOutlet weak var posterizeSlider: UISlider!
     
     @IBAction func createPost(_ sender: Any) {
         
@@ -117,6 +119,9 @@ class ImagePostViewController: ShiftableViewController {
         updateViews()
     }
     
+    @IBAction func changePosterize(_ sender: UISlider) {
+        updateViews()
+    }
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -169,7 +174,10 @@ class ImagePostViewController: ShiftableViewController {
         filter2.setValue(filter.outputImage, forKey: kCIInputImageKey)
         filter2.setValue(hueSlider.value, forKey: kCIInputAngleKey)
         
-        guard let outputCIImage = filter2.outputImage, let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else {
+        filter3.setValue(filter2.outputImage, forKey: kCIInputImageKey)
+        filter3.setValue(posterizeSlider.value, forKey: "inputLevels")
+        
+        guard let outputCIImage = filter3.outputImage, let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else {
             return nil
         }// extent means the entire image
         

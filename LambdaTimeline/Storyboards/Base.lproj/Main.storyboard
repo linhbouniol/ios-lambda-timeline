@@ -235,7 +235,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="PO4-yl-eiM">
+                                                    <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="PO4-yl-eiM">
                                                         <rect key="frame" x="88" y="0.0" width="269" height="31"/>
                                                         <connections>
                                                             <action selector="changeHue:" destination="1Aw-4e-BW2" eventType="valueChanged" id="Zvo-Ko-iVK"/>
@@ -454,7 +454,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="472.71364317841085"/>
+            <point key="canvasLocation" x="1969" y="454"/>
         </scene>
     </scenes>
 </document>
