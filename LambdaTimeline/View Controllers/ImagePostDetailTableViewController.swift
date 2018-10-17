@@ -64,29 +64,8 @@ class ImagePostDetailTableViewController: UITableViewController {
             self.performSegue(withIdentifier: "ShowAudioCommentVC", sender: self)
         }))
         
-//        var commentTextField: UITextField?
-//
-//        alert.addTextField { (textField) in
-//            textField.placeholder = "Comment:"
-//            commentTextField = textField
-//        }
-        
-//        let addCommentAction = UIAlertAction(title: "Add Comment", style: .default) { (_) in
-//
-//            guard let commentText = commentTextField?.text else { return }
-//
-//            self.postController.addComment(with: commentText, to: &self.post!)
-//
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-        
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-//        alert.addAction(addCommentAction)
-//        alert.addAction(cancelAction)
-
+        
         self.present(actionSheet, animated: true, completion: nil)
     }
     
