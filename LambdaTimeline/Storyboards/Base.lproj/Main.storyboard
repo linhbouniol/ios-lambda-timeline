@@ -83,6 +83,69 @@
                                     <outlet property="titleLabel" destination="tHt-lC-hYm" id="uRt-J9-5cc"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoPostCell" id="icS-Ac-Kv7" customClass="VideoPostCollectionViewCell" customModule="LambdaTimeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="385" width="375" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3CB-9R-7CZ" customClass="PlaybackView" customModule="LambdaTimeline" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxb-Ir-9vd">
+                                                    <rect key="frame" x="8" y="329" width="47" height="38"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Mo8-Iw-ord">
+                                                            <rect key="frame" x="8" y="4" width="31" height="30"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xh6-15-meP">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZGj-rG-SlY">
+                                                                    <rect key="frame" x="0.0" y="16.5" width="31" height="13.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59806888199999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="0QA-rf-r6t"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Mo8-Iw-ord" secondAttribute="bottom" constant="4" id="2yR-0S-mgT"/>
+                                                        <constraint firstItem="Mo8-Iw-ord" firstAttribute="top" secondItem="Dxb-Ir-9vd" secondAttribute="top" constant="4" id="7J8-t4-YO3"/>
+                                                        <constraint firstItem="Mo8-Iw-ord" firstAttribute="leading" secondItem="Dxb-Ir-9vd" secondAttribute="leading" constant="8" id="D2v-gH-M4B"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Mo8-Iw-ord" secondAttribute="trailing" constant="8" id="bco-dU-RlW"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Dxb-Ir-9vd" secondAttribute="bottom" constant="8" id="35K-xh-ZYt"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Dxb-Ir-9vd" secondAttribute="trailing" id="Hfe-mT-CzX"/>
+                                                <constraint firstItem="Dxb-Ir-9vd" firstAttribute="leading" secondItem="3CB-9R-7CZ" secondAttribute="leading" constant="8" id="mka-3O-JW1"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="3CB-9R-7CZ" firstAttribute="top" secondItem="icS-Ac-Kv7" secondAttribute="top" id="Kdg-8W-dco"/>
+                                    <constraint firstAttribute="trailing" secondItem="3CB-9R-7CZ" secondAttribute="trailing" id="tgC-S9-aw3"/>
+                                    <constraint firstAttribute="bottom" secondItem="3CB-9R-7CZ" secondAttribute="bottom" id="ttH-dJ-FI2"/>
+                                    <constraint firstItem="3CB-9R-7CZ" firstAttribute="leading" secondItem="icS-Ac-Kv7" secondAttribute="leading" id="vLm-HL-ed5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="authorLabel" destination="ZGj-rG-SlY" id="pUZ-E4-gfK"/>
+                                    <outlet property="labelBackgroundView" destination="Dxb-Ir-9vd" id="jpf-B5-xpg"/>
+                                    <outlet property="playbackView" destination="3CB-9R-7CZ" id="Xfg-pl-d9x"/>
+                                    <outlet property="titleLabel" destination="xh6-15-meP" id="mnw-uN-qvr"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="hPa-Td-5A3" id="ygt-Fi-6zc"/>
@@ -298,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="-195.6521739130435"/>
+            <point key="canvasLocation" x="1969" y="-213"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gdW-Je-ais">
