@@ -408,7 +408,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="a1p-af-m2r" detailTextLabel="KxJ-Oh-Ju8" style="IBUITableViewCellStyleSubtitle" id="gWx-Ba-4ra">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextCommentCell" textLabel="a1p-af-m2r" detailTextLabel="KxJ-Oh-Ju8" style="IBUITableViewCellStyleSubtitle" id="gWx-Ba-4ra">
                                 <rect key="frame" x="0.0" y="133" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gWx-Ba-4ra" id="wtQ-2t-2R8">
@@ -431,6 +431,50 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioCommentCell" id="93H-5L-dde" customClass="AudioCommentTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="177" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93H-5L-dde" id="cEQ-l8-FIA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EeI-Hh-Ryt">
+                                            <rect key="frame" x="62" y="11" width="297" height="24.5"/>
+                                            <subviews>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eXm-Cr-LDb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="297" height="2"/>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-2j-ug2">
+                                                    <rect key="frame" x="0.0" y="10" width="297" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBf-1p-Dah">
+                                            <rect key="frame" x="16" y="6" width="30" height="30"/>
+                                            <state key="normal" title="Play"/>
+                                            <connections>
+                                                <action selector="play:" destination="93H-5L-dde" eventType="touchUpInside" id="UWc-6k-PT9"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EeI-Hh-Ryt" firstAttribute="leading" secondItem="zBf-1p-Dah" secondAttribute="trailing" constant="16" id="BCJ-cB-PM7"/>
+                                        <constraint firstAttribute="bottom" secondItem="zBf-1p-Dah" secondAttribute="bottom" constant="7.5" id="UJx-y6-Mki"/>
+                                        <constraint firstItem="zBf-1p-Dah" firstAttribute="leading" secondItem="cEQ-l8-FIA" secondAttribute="leading" constant="16" id="Xpb-QD-2t7"/>
+                                        <constraint firstItem="EeI-Hh-Ryt" firstAttribute="top" secondItem="cEQ-l8-FIA" secondAttribute="top" constant="11" id="aNb-qQ-wll"/>
+                                        <constraint firstItem="zBf-1p-Dah" firstAttribute="top" secondItem="cEQ-l8-FIA" secondAttribute="top" constant="6" id="fMs-6y-dHz"/>
+                                        <constraint firstAttribute="trailing" secondItem="EeI-Hh-Ryt" secondAttribute="trailing" constant="16" id="v1b-8h-vHT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="authorLabel" destination="qFU-2j-ug2" id="HY7-gv-gwb"/>
+                                    <outlet property="playButton" destination="zBf-1p-Dah" id="TeU-eM-KbY"/>
+                                    <outlet property="progressBar" destination="eXm-Cr-LDb" id="Zta-lI-jvP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -508,7 +552,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S2K-fW-Rkx">
-                                <rect key="frame" x="163" y="273.5" width="49" height="120.5"/>
+                                <rect key="frame" x="163" y="248.5" width="49" height="170.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfU-As-1B5">
                                         <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
@@ -530,6 +574,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rd3-L9-qks">
+                                        <rect key="frame" x="6" y="140.5" width="37" height="30"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="done:" destination="u8L-Dj-hHx" eventType="touchUpInside" id="mvN-K5-i8t"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -541,6 +592,7 @@
                         <viewLayoutGuide key="safeArea" id="q0T-Yz-4Ic"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="Rd3-L9-qks" id="Bmt-zC-kaL"/>
                         <outlet property="playButton" destination="MiD-SY-fqA" id="DTd-tU-Ax4"/>
                         <outlet property="recordButton" destination="HfU-As-1B5" id="6UR-uG-eqN"/>
                         <outlet property="timeLabel" destination="tGt-4V-rHi" id="FJ3-TX-xgw"/>

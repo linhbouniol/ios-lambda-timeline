@@ -10,8 +10,8 @@ import Foundation
 
 class FetchMediaOperation: ConcurrentOperation {
     
-    init(post: Post, postController: PostController, session: URLSession = URLSession.shared) {
-        self.post = post
+    init(mediaURL: URL, postController: PostController, session: URLSession = URLSession.shared) {
+        self.mediaURL = mediaURL
         self.postController = postController
         self.session = session
         super.init()
@@ -20,13 +20,11 @@ class FetchMediaOperation: ConcurrentOperation {
     override func start() {
         state = .isExecuting
         
-        let url = post.mediaURL
-        
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: mediaURL) { (data, response, error) in
             defer { self.state = .isFinished }
             if self.isCancelled { return }
             if let error = error {
-                NSLog("Error fetching data for \(self.post): \(error)")
+                NSLog("Error fetching data for \(self.mediaURL): \(error)")
                 return
             }
             
@@ -48,7 +46,7 @@ class FetchMediaOperation: ConcurrentOperation {
     
     // MARK: Properties
     
-    let post: Post
+    let mediaURL: URL
     let postController: PostController
     var mediaData: Data?
     

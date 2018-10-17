@@ -57,6 +57,8 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             loadImage(for: cell, forItemAt: indexPath)
             
             return cell
+        default:
+            return UICollectionViewCell()
         }
     }
     
@@ -73,6 +75,8 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             guard let ratio = post.ratio else { return size }
             
             size.height = size.width * ratio
+        default:
+            break
         }
         
         return size
@@ -106,7 +110,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             return
         }
         
-        let fetchOp = FetchMediaOperation(post: post, postController: postController)
+        let fetchOp = FetchMediaOperation(mediaURL: post.mediaURL, postController: postController)
         
         let cacheOp = BlockOperation {
             if let data = fetchOp.mediaData {
