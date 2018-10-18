@@ -58,6 +58,8 @@ class Post: NSObject, MKAnnotation {
                                    Post.longitudeKey: coordinate.longitude
                                    ]
         
+        // Firebase will not store the CLLocationCoordinate2D, so we need to break it up into a key-value pair for the latitude and longitude.
+        
         guard let ratio = self.ratio else { return dict }
         
         dict[Post.ratioKey] = ratio
