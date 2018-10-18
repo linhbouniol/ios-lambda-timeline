@@ -70,12 +70,12 @@ class ImagePostDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (post?.comments.count ?? 0) - 1
+        return post?.comments.count ?? 1 // if there is no comment, assume there is at least one
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let comment = post?.comments[indexPath.row + 1]
+        let comment = post?.comments[indexPath.row + 1] // skip the first entry
         
         if let text = comment?.text {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath)

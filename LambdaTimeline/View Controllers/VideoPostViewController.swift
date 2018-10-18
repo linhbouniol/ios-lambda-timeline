@@ -29,10 +29,12 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
         if recordOutput.isRecording {
             recordOutput.stopRecording()
         } else {
+            // record and save to the url in directory
             recordOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
         }
     }
     
+    // when done recording, tap "Post" to create it, which will then save it to Firebase
     @IBAction func createPost(_ sender: Any) {
         
         let alert = UIAlertController(title: "New Video Post", message: nil, preferredStyle: .alert)
@@ -49,9 +51,10 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
                 return
             }
             
-            // get the data out of video url
+            // get the data out of video url, lastRecordedURL is the outputURL we get from the recording when it finished
             guard let url = self.lastRecordedURL, let data = try? Data(contentsOf: url) else { return }
             
+            // pass data to createPost so it can be stored
             self.postController.createPost(with: title, ofType: .video, mediaData: data, ratio: 9.0/16.0) { (success) in
                 guard success else {
                     DispatchQueue.main.async {
@@ -121,6 +124,7 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
         }
     }
     
+    // setup the directory to return a url so we can use it to store the recording
     private func newRecordingURL() -> URL {
         let fm = FileManager.default
         let documentsDir = try! fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -146,7 +150,7 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         DispatchQueue.main.async {
             self.updateViews()
-            
+        
             self.lastRecordedURL = outputFileURL
         }
     }

@@ -40,6 +40,10 @@ class VideoPostDetailTableViewController: UITableViewController {
             playButton.isSelected = true
             player.play()
         }
+        
+        /*
+         Starts off with playButton selected (true), then the player calls play(), next time playButton is selected, then set isSelected to false and pause() the player.
+         */
     }
     
     override func viewDidLoad() {
@@ -56,7 +60,7 @@ class VideoPostDetailTableViewController: UITableViewController {
     }
     
     func updateViews() {
-        guard isViewLoaded else { return }
+        guard isViewLoaded else { return } // always check to make sure view is loaded
         let url = post.mediaURL
         
         // make playback asset with the url, asset represents the video file itself
@@ -71,6 +75,8 @@ class VideoPostDetailTableViewController: UITableViewController {
         // make a player item with the asset, and tell player to play it
         player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
         
+        // observe the player to see when it finished playing, when it did, call play() on player
+        // this allows the video to loop until we tapped pause
         playbackObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main) { _ in
             self.player.seek(to: CMTime.zero)
             self.player.play()
@@ -102,7 +108,7 @@ class VideoPostDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (post?.comments.count ?? 0) - 1
+        return post?.comments.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
