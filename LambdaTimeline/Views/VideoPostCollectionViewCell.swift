@@ -35,7 +35,6 @@ class VideoPostCollectionViewCell: UICollectionViewCell {
             playButton.isSelected = true
             player.play()
         }
-        
     }
     
     override func layoutSubviews() {

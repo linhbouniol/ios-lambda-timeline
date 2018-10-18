@@ -187,8 +187,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             
             let destinationVC = segue.destination as? VideoPostDetailTableViewController
             
-            guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
-                let postID = postController.posts[indexPath.row].id else { return }
+            guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
             
             destinationVC?.postController = postController
             destinationVC?.post = postController.posts[indexPath.row]

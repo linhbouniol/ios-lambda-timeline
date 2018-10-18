@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoPostDetailTableViewController: UITableViewController {
     
-    var post: Post!
+    var post: Post! {
+        didSet {
+            updateViews()
+        }
+    }
+    
     var postController: PostController!
-    var videoURL: URL?
+    
+    private var player: AVPlayer = AVPlayer()
+    private var playbackObserver: NSObjectProtocol? = nil
     
     private var operations = [URL : Operation]()
     private let mediaFetchQueue = OperationQueue()
@@ -21,8 +29,19 @@ class VideoPostDetailTableViewController: UITableViewController {
     @IBOutlet weak var playbackView: PlaybackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playbackViewAspectRatioConstraint: NSLayoutConstraint!
 
+    @IBAction func togglePlayback(_ sender: Any) {
+        if playButton.isSelected {
+            playButton.isSelected = false
+            player.pause()
+        } else {
+            playButton.isSelected = true
+            player.play()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -37,12 +56,27 @@ class VideoPostDetailTableViewController: UITableViewController {
     }
     
     func updateViews() {
+        guard isViewLoaded else { return }
+        let url = post.mediaURL
         
-        guard let videoURL = videoURL else { return }
+        // make playback asset with the url, asset represents the video file itself
+        let asset = AVURLAsset(url: url)
         
-        title = post?.title
+        // tell the playerLayer to use the player we just made
+        playbackView.playerLayer.player = player
+        playbackView.playerLayer.videoGravity = .resizeAspectFill
         
-//        imageView.image = image
+        playbackObserver = nil
+        
+        // make a player item with the asset, and tell player to play it
+        player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        
+        playbackObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main) { _ in
+            self.player.seek(to: CMTime.zero)
+            self.player.play()
+        }
+        
+        title = post.title
         
         titleLabel.text = post.title
         authorLabel.text = post.author.displayName
@@ -147,6 +181,11 @@ class VideoPostDetailTableViewController: UITableViewController {
         // assign the fetching of audio data to operations dictionary at that url, so we could cancel when we need to
         operations[url] = fetchOp
     }
+    
+    /*
+     Don't want to use cache and operation for videos because they are usually large files so we don't want to store them.
+     We want to fetch from the server every time we playback the recording.
+     */
     
     // MARK: - Navigation
     

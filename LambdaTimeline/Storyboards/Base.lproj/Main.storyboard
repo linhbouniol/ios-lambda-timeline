@@ -123,9 +123,8 @@
                                                         <constraint firstAttribute="trailing" secondItem="Mo8-Iw-ord" secondAttribute="trailing" constant="8" id="bco-dU-RlW"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-5N-dJ7">
-                                                    <rect key="frame" x="155" y="303" width="64" height="64"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-5N-dJ7">
+                                                    <rect key="frame" x="155.5" y="303" width="64" height="64"/>
                                                     <state key="normal" image="PlayButton"/>
                                                     <state key="selected" image="PauseButton"/>
                                                     <connections>
@@ -137,6 +136,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Dxb-Ir-9vd" secondAttribute="bottom" constant="8" id="35K-xh-ZYt"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Dxb-Ir-9vd" secondAttribute="trailing" id="Hfe-mT-CzX"/>
+                                                <constraint firstItem="Xxs-5N-dJ7" firstAttribute="centerX" secondItem="3CB-9R-7CZ" secondAttribute="centerX" id="geA-z5-chi"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xxs-5N-dJ7" secondAttribute="bottom" constant="8" id="iF3-Dg-cgQ"/>
                                                 <constraint firstItem="Dxb-Ir-9vd" firstAttribute="leading" secondItem="3CB-9R-7CZ" secondAttribute="leading" constant="8" id="mka-3O-JW1"/>
                                             </constraints>
                                         </view>
@@ -444,8 +445,20 @@
                             <subviews>
                                 <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oTW-uI-KrN" customClass="PlaybackView" customModule="LambdaTimeline" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m40-ck-xYT">
+                                            <rect key="frame" x="155.5" y="147" width="64" height="64"/>
+                                            <state key="normal" image="PlayButton"/>
+                                            <state key="selected" image="PauseButton"/>
+                                            <connections>
+                                                <action selector="togglePlayback:" destination="jYd-If-45b" eventType="touchUpInside" id="rO6-vM-SoE"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="m40-ck-xYT" firstAttribute="centerX" secondItem="oTW-uI-KrN" secondAttribute="centerX" id="4NW-wZ-GRt"/>
+                                        <constraint firstAttribute="bottom" secondItem="m40-ck-xYT" secondAttribute="bottom" id="ZtU-se-ZJq"/>
                                         <constraint firstAttribute="width" secondItem="oTW-uI-KrN" secondAttribute="height" multiplier="16:9" id="l0Q-O2-tvC"/>
                                     </constraints>
                                 </view>
@@ -560,6 +573,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="bn4-2q-R6P" id="ICe-G9-fJZ"/>
+                        <outlet property="playButton" destination="m40-ck-xYT" id="EB4-HB-oUC"/>
                         <outlet property="playbackView" destination="oTW-uI-KrN" id="M0W-jC-YNP"/>
                         <outlet property="titleLabel" destination="vw6-uJ-9mM" id="Syn-xM-Vek"/>
                         <segue destination="2H6-2R-1A7" kind="presentation" identifier="ShowTextCommentVC" id="pFX-uk-W5E"/>
