@@ -123,6 +123,15 @@
                                                         <constraint firstAttribute="trailing" secondItem="Mo8-Iw-ord" secondAttribute="trailing" constant="8" id="bco-dU-RlW"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-5N-dJ7">
+                                                    <rect key="frame" x="155" y="303" width="64" height="64"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="PlayButton"/>
+                                                    <state key="selected" image="PauseButton"/>
+                                                    <connections>
+                                                        <action selector="togglePlayback:" destination="icS-Ac-Kv7" eventType="touchUpInside" id="KsE-8g-ppd"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -142,6 +151,7 @@
                                 <connections>
                                     <outlet property="authorLabel" destination="ZGj-rG-SlY" id="pUZ-E4-gfK"/>
                                     <outlet property="labelBackgroundView" destination="Dxb-Ir-9vd" id="jpf-B5-xpg"/>
+                                    <outlet property="playButton" destination="Xxs-5N-dJ7" id="HUu-to-3qI"/>
                                     <outlet property="playbackView" destination="3CB-9R-7CZ" id="Xfg-pl-d9x"/>
                                     <outlet property="titleLabel" destination="xh6-15-meP" id="mnw-uN-qvr"/>
                                 </connections>
@@ -168,7 +178,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRz-lg-pQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="-143"/>
+            <point key="canvasLocation" x="1269.5999999999999" y="-143.47826086956522"/>
         </scene>
         <!--Title-->
         <scene sceneID="kP9-yp-I8H">
@@ -865,6 +875,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="PauseButton" width="64" height="64"/>
+        <image name="PlayButton" width="64" height="64"/>
         <image name="Record" width="116" height="116"/>
     </resources>
     <inferredMetricsTieBreakers>

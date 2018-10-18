@@ -66,6 +66,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoPostCell", for: indexPath) as? VideoPostCollectionViewCell else { return UICollectionViewCell() }
             
             cell.post = post
+            cell.setVideoURL(post.mediaURL)
             
             return cell
         default:

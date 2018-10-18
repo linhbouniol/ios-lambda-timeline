@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoPostCollectionViewCell: UICollectionViewCell {
     
@@ -16,10 +17,26 @@ class VideoPostCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private var player: AVPlayer = AVPlayer()
+    private var playbackObserver: NSObjectProtocol? = nil
+    
     @IBOutlet weak var playbackView: PlaybackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var labelBackgroundView: UIView!
+    @IBOutlet weak var playButton: UIButton!
+    
+    @IBAction func togglePlayback(_ sender: Any) {
+        
+        if playButton.isSelected {
+            playButton.isSelected = false
+            player.pause()
+        } else {
+            playButton.isSelected = true
+            player.play()
+        }
+        
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -45,7 +62,24 @@ class VideoPostCollectionViewCell: UICollectionViewCell {
         authorLabel.text = post.author.displayName
     }
     
-    func setVideoURL(_ url: URL?) {
-        // do something
+    func setVideoURL(_ url: URL) {
+        
+        // make playback asset with the url, asset represents the video file itself
+        let asset = AVURLAsset(url: url)
+        
+        // tell the playerLayer to use the player we just made
+        playbackView.playerLayer.player = player
+        playbackView.playerLayer.videoGravity = .resizeAspectFill
+        
+        playbackObserver = nil
+        
+        // make a player item with the asset, and tell player to play it
+        player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        
+        playbackObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main) { _ in
+            self.player.seek(to: CMTime.zero)
+            self.player.play()
+        }
+        
     }
 }

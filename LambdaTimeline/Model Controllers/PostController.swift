@@ -105,7 +105,7 @@ class PostController {
 
     private func store(mediaData: Data, mediaType: MediaType, completion: @escaping (URL?) -> Void) {
         
-        let mediaID = UUID().uuidString
+        let mediaID = UUID().uuidString + ".mov"
         
         let mediaRef = storageRef.child(mediaType.rawValue).child(mediaID)
         
