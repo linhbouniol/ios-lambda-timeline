@@ -70,7 +70,13 @@ class ImagePostDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return post?.comments.count ?? 1 // if there is no comment, assume there is at least one
+//        return (post?.comments.count ?? 0) - 1
+        return (post?.comments.count ?? 1) - 1
+        
+        /*
+         -1 because the first entry is the post's title
+         Can't have ?? 0) -1, because if the post is nil, then there will be 0 - 1 rows and this would crashed.
+         */
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
