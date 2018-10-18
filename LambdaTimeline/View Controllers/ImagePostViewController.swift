@@ -52,6 +52,7 @@ class ImagePostViewController: ShiftableViewController {
     
     @IBAction func createPost(_ sender: Any) {
         
+        // hide the keyboard when you tap Post, editing is done
         view.endEditing(true)
         
         guard let imageData = imageView.image?.jpegData(compressionQuality: 0.1),
