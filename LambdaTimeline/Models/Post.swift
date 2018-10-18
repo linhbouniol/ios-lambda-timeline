@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import MapKit
 
 enum MediaType: String {
     case image
@@ -15,7 +16,7 @@ enum MediaType: String {
     case video
 }
 
-struct Post {
+class Post: NSObject, MKAnnotation {
     
     static private let mediaKey = "media"
     static private let ratioKey = "ratio"
@@ -24,6 +25,9 @@ struct Post {
     static private let commentsKey = "comments"
     static private let timestampKey = "timestamp"
     static private let idKey = "id"
+    static private let coordinatesKey = "coordinates"
+    static private let latitudeKey = "latitude"
+    static private let longitudeKey = "longitude"
     
     var mediaURL: URL
     let mediaType: MediaType
@@ -33,8 +37,15 @@ struct Post {
     var id: String?
     var ratio: CGFloat?
     
+    // an actual coordinate2D, but it has an internal flag that marks it as invalid (aka nil in forever ago's coding practice)
+    var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
+    
     var title: String? {
         return comments.first?.text
+    }
+    
+    var subtitle: String? {
+        return author.displayName
     }
     
     var dictionaryRepresentation: [String : Any] {
@@ -42,7 +53,10 @@ struct Post {
                                    Post.mediaTypeKey: mediaType.rawValue,
                                    Post.commentsKey: comments.map({ $0.dictionaryRepresentation }),
                                    Post.authorKey: author.dictionaryRepresentation,
-                                   Post.timestampKey: timestamp.timeIntervalSince1970]
+                                   Post.timestampKey: timestamp.timeIntervalSince1970,
+                                   Post.latitudeKey: coordinate.latitude,
+                                   Post.longitudeKey: coordinate.longitude
+                                   ]
         
         guard let ratio = self.ratio else { return dict }
         
@@ -51,13 +65,14 @@ struct Post {
         return dict
     }
     
-    init(title: String, mediaURL: URL, mediaType: MediaType, ratio: CGFloat? = nil, author: Author, timestamp: Date = Date()) {
+    init(title: String, mediaURL: URL, mediaType: MediaType, coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid, ratio: CGFloat? = nil, author: Author, timestamp: Date = Date()) {
         self.mediaURL = mediaURL
         self.ratio = ratio
         self.mediaType = mediaType //.image
         self.author = author
         self.comments = [Comment(text: title, author: author)]
         self.timestamp = timestamp
+        self.coordinate = coordinate
     }
     
     init?(dictionary: [String : Any], id: String) {
@@ -68,7 +83,10 @@ struct Post {
             let authorDictionary = dictionary[Post.authorKey] as? [String: Any],
             let author = Author(dictionary: authorDictionary),
             let timestampTimeInterval = dictionary[Post.timestampKey] as? TimeInterval,
-            let captionDictionaries = dictionary[Post.commentsKey] as? [[String: Any]] else { return nil }
+            let captionDictionaries = dictionary[Post.commentsKey] as? [[String: Any]],
+            let latitude = dictionary[Post.latitudeKey] as? Double,
+            let longitude = dictionary[Post.longitudeKey] as? Double else
+        { return nil }
         
         self.mediaURL = mediaURL
         self.mediaType = mediaType
@@ -77,5 +95,6 @@ struct Post {
         self.timestamp = Date(timeIntervalSince1970: timestampTimeInterval)
         self.comments = captionDictionaries.compactMap({ Comment(dictionary: $0) })
         self.id = id
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
