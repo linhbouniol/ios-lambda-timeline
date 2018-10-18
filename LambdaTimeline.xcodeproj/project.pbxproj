@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3987CC7C2177E99E0067ECB5 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC7B2177E99E0067ECB5 /* PlaybackView.swift */; };
+		3987CC7E2177EE9F0067ECB5 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */; };
+		3987CC802177F1B80067ECB5 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC7F2177F1B80067ECB5 /* CameraPreviewView.swift */; };
+		3987CC8421780EBE0067ECB5 /* VideoPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */; };
 		39CB19E9217525DD00C3F44D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39CB19E8217525DD00C3F44D /* GoogleService-Info.plist */; };
 		39CB1A0B2176920000C3F44D /* TextCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CB1A0A2176920000C3F44D /* TextCommentViewController.swift */; };
 		39CB1A0D2176920C00C3F44D /* AudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		33A2B89DE9E21538434BD640 /* Pods-LambdaTimeline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LambdaTimeline.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LambdaTimeline/Pods-LambdaTimeline.debug.xcconfig"; sourceTree = "<group>"; };
 		3987CC7B2177E99E0067ECB5 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
+		3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
+		3987CC7F2177F1B80067ECB5 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		39CB19E8217525DD00C3F44D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39CB1A0A2176920000C3F44D /* TextCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCommentViewController.swift; sourceTree = "<group>"; };
 		39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */,
 				39CB1A0A2176920000C3F44D /* TextCommentViewController.swift */,
 				39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */,
+				3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */,
+				3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 			children = (
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
 				39CB1A0E2176ACA600C3F44D /* AudioCommentTableViewCell.swift */,
+				3987CC7F2177F1B80067ECB5 /* CameraPreviewView.swift */,
 				3987CC7B2177E99E0067ECB5 /* PlaybackView.swift */,
 				39CB1A322177E03900C3F44D /* VideoPostCollectionViewCell.swift */,
 			);
@@ -397,6 +406,8 @@
 				3987CC7C2177E99E0067ECB5 /* PlaybackView.swift in Sources */,
 				46CFE6FF2171556D00E7FF73 /* ConcurrentOperation.swift in Sources */,
 				46463790216FFD1B00E7FF73 /* Post.swift in Sources */,
+				3987CC802177F1B80067ECB5 /* CameraPreviewView.swift in Sources */,
+				3987CC8421780EBE0067ECB5 /* VideoPostDetailTableViewController.swift in Sources */,
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
@@ -411,6 +422,7 @@
 				39CB1A0D2176920C00C3F44D /* AudioCommentViewController.swift in Sources */,
 				46463792216FFDD900E7FF73 /* Comment.swift in Sources */,
 				46CFE6F721707FA600E7FF73 /* UIViewController+InformationalAlert.swift in Sources */,
+				3987CC7E2177EE9F0067ECB5 /* VideoPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

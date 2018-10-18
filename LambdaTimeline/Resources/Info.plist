@@ -37,6 +37,8 @@
 	<string>In order to allow you to add photos to posts</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>LambdaTimeline needs microphone access to allow you to create recordings.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>LambdaTimeline needs camera access to allow you to create videos.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
