@@ -30,7 +30,6 @@ class VideoPostDetailTableViewController: UITableViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var playbackViewAspectRatioConstraint: NSLayoutConstraint!
 
     @IBAction func togglePlayback(_ sender: Any) {
         if playButton.isSelected {

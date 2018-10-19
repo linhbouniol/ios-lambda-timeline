@@ -11,6 +11,9 @@
 		3987CC7E2177EE9F0067ECB5 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */; };
 		3987CC802177F1B80067ECB5 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC7F2177F1B80067ECB5 /* CameraPreviewView.swift */; };
 		3987CC8421780EBE0067ECB5 /* VideoPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */; };
+		39AAA23A21794310004AC4AC /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AAA23921794310004AC4AC /* LocationHelper.swift */; };
+		39AAA23C21794FC7004AC4AC /* PostTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AAA23B21794FC7004AC4AC /* PostTabBarViewController.swift */; };
+		39AAA23E21797A84004AC4AC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AAA23D21797A84004AC4AC /* MapViewController.swift */; };
 		39CB19E9217525DD00C3F44D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39CB19E8217525DD00C3F44D /* GoogleService-Info.plist */; };
 		39CB1A0B2176920000C3F44D /* TextCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CB1A0A2176920000C3F44D /* TextCommentViewController.swift */; };
 		39CB1A0D2176920C00C3F44D /* AudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */; };
@@ -47,6 +50,9 @@
 		3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
 		3987CC7F2177F1B80067ECB5 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostDetailTableViewController.swift; sourceTree = "<group>"; };
+		39AAA23921794310004AC4AC /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
+		39AAA23B21794FC7004AC4AC /* PostTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTabBarViewController.swift; sourceTree = "<group>"; };
+		39AAA23D21797A84004AC4AC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39CB19E8217525DD00C3F44D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39CB1A0A2176920000C3F44D /* TextCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCommentViewController.swift; sourceTree = "<group>"; };
 		39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +188,8 @@
 				39CB1A0C2176920C00C3F44D /* AudioCommentViewController.swift */,
 				3987CC7D2177EE9F0067ECB5 /* VideoPostViewController.swift */,
 				3987CC8321780EBE0067ECB5 /* VideoPostDetailTableViewController.swift */,
+				39AAA23B21794FC7004AC4AC /* PostTabBarViewController.swift */,
+				39AAA23D21797A84004AC4AC /* MapViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 				46CFE6F22170757F00E7FF73 /* User+DictionaryRepresentation.swift */,
 				46D571F42173CF3E00E7FF73 /* UIImage+Ratio.swift */,
 				46CFE6F621707FA600E7FF73 /* UIViewController+InformationalAlert.swift */,
+				39AAA23921794310004AC4AC /* LocationHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -408,6 +417,9 @@
 				46463790216FFD1B00E7FF73 /* Post.swift in Sources */,
 				3987CC802177F1B80067ECB5 /* CameraPreviewView.swift in Sources */,
 				3987CC8421780EBE0067ECB5 /* VideoPostDetailTableViewController.swift in Sources */,
+				39AAA23C21794FC7004AC4AC /* PostTabBarViewController.swift in Sources */,
+				39AAA23E21797A84004AC4AC /* MapViewController.swift in Sources */,
+				39AAA23A21794310004AC4AC /* LocationHelper.swift in Sources */,
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,

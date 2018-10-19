@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import CoreLocation
 
 class ImagePostViewController: ShiftableViewController {
     
@@ -50,6 +51,8 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var hueSlider: UISlider!
     @IBOutlet weak var posterizeSlider: UISlider!
     
+    @IBOutlet weak var locationSwitch: UISwitch!
+    
     @IBAction func createPost(_ sender: Any) {
         
         // hide the keyboard when you tap Post, editing is done
@@ -61,7 +64,13 @@ class ImagePostViewController: ShiftableViewController {
                 return
         }
         
-        postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio) { (success) in
+        var currentLocation: CLLocation? = nil
+        
+        if locationSwitch.isOn {
+            currentLocation = LocationHelper.shared.currentLocation
+        }
+        
+        postController.createPost(with: title, ofType: .image, mediaData: imageData, coordinate: currentLocation?.coordinate ?? kCLLocationCoordinate2DInvalid, ratio: imageView.image?.ratio) { (success) in
             guard success else {
                 DispatchQueue.main.async {
                     self.presentInformationalAlertController(title: "Error", message: "Unable to create post. Try again.")
@@ -123,6 +132,16 @@ class ImagePostViewController: ShiftableViewController {
     @IBAction func changePosterize(_ sender: UISlider) {
         updateViews()
     }
+    
+    @IBAction func saveCurrentLocation(_ sender: Any) {
+        
+        if locationSwitch.isOn {
+            LocationHelper.shared.startLocationTracking()
+        } else {
+            LocationHelper.shared.stopLocationTracking()
+        }
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -131,6 +150,15 @@ class ImagePostViewController: ShiftableViewController {
         setImageViewHeight(with: 1.0)
         
         updateViews()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // when the view goes away, if the switch is on (meaning we started tracking), then we need to stop tracking
+        if locationSwitch.isOn {
+            LocationHelper.shared.stopLocationTracking()
+        }
     }
     
     // MARK: - Methods
@@ -143,6 +171,7 @@ class ImagePostViewController: ShiftableViewController {
     }
     
     private func updateViews() {
+        guard isViewLoaded else { return }
         
 //        guard let imageData = imageData,
 //            let originalImage = UIImage(data: imageData) else {

@@ -10,12 +10,14 @@ import UIKit
 import FirebaseAuth
 import FirebaseUI
 
-class PostsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PostsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, PostControllerProtocol {
+    
+    var postController: PostController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postController.observePosts { (_) in
+        postController?.observePosts { (_) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -46,11 +48,11 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postController.posts.count
+        return postController?.posts.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let post = postController.posts[indexPath.row]
+        let post = postController!.posts[indexPath.row]
         
         switch post.mediaType {
             
@@ -78,7 +80,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         
         var size = CGSize(width: view.frame.width, height: view.frame.width)
         
-        let post = postController.posts[indexPath.row]
+        let post = postController!.posts[indexPath.row]
         
         switch post.mediaType {
             
@@ -109,12 +111,12 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         
-        guard let postID = postController.posts[indexPath.row].id else { return }
+        guard let postID = postController?.posts[indexPath.row].id else { return }
         operations[postID]?.cancel()
     }
     
     func loadImage(for imagePostCell: ImagePostCollectionViewCell, forItemAt indexPath: IndexPath) {
-        let post = postController.posts[indexPath.row]
+        let post = postController!.posts[indexPath.row]
         
         guard let postID = post.id else { return }
         
@@ -125,7 +127,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             return
         }
         
-        let fetchOp = FetchMediaOperation(mediaURL: post.mediaURL, postController: postController)
+        let fetchOp = FetchMediaOperation(mediaURL: post.mediaURL, postController: postController!)
         
         let cacheOp = BlockOperation {
             if let data = fetchOp.mediaData {
@@ -177,10 +179,10 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             let destinationVC = segue.destination as? ImagePostDetailTableViewController
             
             guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
-                let postID = postController.posts[indexPath.row].id else { return }
+                let postID = postController?.posts[indexPath.row].id else { return }
             
             destinationVC?.postController = postController
-            destinationVC?.post = postController.posts[indexPath.row]
+            destinationVC?.post = postController?.posts[indexPath.row]
             destinationVC?.imageData = cache.value(for: postID)
             
         } else if segue.identifier == "ViewVideoPost" {
@@ -190,11 +192,10 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
             
             destinationVC?.postController = postController
-            destinationVC?.post = postController.posts[indexPath.row]
+            destinationVC?.post = postController?.posts[indexPath.row]
         }
     }
     
-    private let postController = PostController()
     private var operations = [String : Operation]()
     private let mediaFetchQueue = OperationQueue()
     private let cache = Cache<String, Data>()

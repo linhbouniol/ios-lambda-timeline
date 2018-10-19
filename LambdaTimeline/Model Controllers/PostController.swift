@@ -67,8 +67,6 @@ class PostController {
         } catch {
             NSLog("No audio data: \(error)")
         }
-        
-//
     }
     
     func observePosts(completion: @escaping (Error?) -> Void) {

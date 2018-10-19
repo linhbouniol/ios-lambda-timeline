@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreLocation
 
 class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
@@ -24,6 +25,7 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
     
     @IBOutlet weak var cameraPreviewView: CameraPreviewView!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var locationSwitch: UISwitch!
     
     @IBAction func toggleRecord(_ sender: Any) {
         if recordOutput.isRecording {
@@ -54,8 +56,14 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
             // get the data out of video url, lastRecordedURL is the outputURL we get from the recording when it finished
             guard let url = self.lastRecordedURL, let data = try? Data(contentsOf: url) else { return }
             
+            var currentLocation: CLLocation? = nil
+            
+            if self.locationSwitch.isOn {
+                currentLocation = LocationHelper.shared.currentLocation
+            }
+            
             // pass data to createPost so it can be stored
-            self.postController.createPost(with: title, ofType: .video, mediaData: data, ratio: 9.0/16.0) { (success) in
+            self.postController.createPost(with: title, ofType: .video, mediaData: data, coordinate: currentLocation?.coordinate ?? kCLLocationCoordinate2DInvalid, ratio: 9.0/16.0) { (success) in
                 guard success else {
                     DispatchQueue.main.async {
                         self.presentInformationalAlertController(title: "Error", message: "Unable to create post. Try again.")
@@ -70,6 +78,15 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
         })
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveCurrentLocation(_ sender: Any) {
+        
+        if locationSwitch.isOn {
+            LocationHelper.shared.startLocationTracking()
+        } else {
+            LocationHelper.shared.stopLocationTracking()
+        }
     }
     
     // MARK: - View Lifecycles
@@ -90,6 +107,11 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
         super.viewDidDisappear(animated)
         
         captureSession.stopRunning()
+        
+        // when the view goes away, if the switch is on (meaning we started tracking), then we need to stop tracking
+        if locationSwitch.isOn {
+            LocationHelper.shared.stopLocationTracking()
+        }
     }
 
     // MARK: - Methods
@@ -154,4 +176,17 @@ class VideoPostViewController: UIViewController, AVCaptureFileOutputRecordingDel
             self.lastRecordedURL = outputFileURL
         }
     }
+    
+    /*
+     The outputFileURL that is storing the recording, is the same as the one that newRecordingURL() returned (line 33).
+     The problem is when we call the recordOutput.url after the recording is finished, it is nil. When its done recording, it creates the url and then gets rid of it.
+     So we created a property to store the outputFileURL as soon as the recording finishes, and pass it to the createPost().
+     
+     An alternative way is...
+     When we create a new recording, we create a new url, store it in a property, and then pass that property to the recordOutput.
+     
+     lastRecordedURL = newRecordingURL()
+     
+     recordOutput.startRecording(to: lastRecordedURL, recordingDelegate: self)
+    */
 }

@@ -85,9 +85,7 @@ class Post: NSObject, MKAnnotation {
             let authorDictionary = dictionary[Post.authorKey] as? [String: Any],
             let author = Author(dictionary: authorDictionary),
             let timestampTimeInterval = dictionary[Post.timestampKey] as? TimeInterval,
-            let captionDictionaries = dictionary[Post.commentsKey] as? [[String: Any]],
-            let latitude = dictionary[Post.latitudeKey] as? Double,
-            let longitude = dictionary[Post.longitudeKey] as? Double else
+            let captionDictionaries = dictionary[Post.commentsKey] as? [[String: Any]] else
         { return nil }
         
         self.mediaURL = mediaURL
@@ -97,6 +95,12 @@ class Post: NSObject, MKAnnotation {
         self.timestamp = Date(timeIntervalSince1970: timestampTimeInterval)
         self.comments = captionDictionaries.compactMap({ Comment(dictionary: $0) })
         self.id = id
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        // only make a coordinate if the latitude and longitude are non-nil. Otherwise, leave the coordinate be the default value (invalid coordinate)
+        // If we leave these two properties as a part of the guard statement, since they might be nil, it will result in an invalid Post, since the guard statement returns nil if any of the properties are nil.
+        if let latitude = dictionary[Post.latitudeKey] as? Double,
+            let longitude = dictionary[Post.longitudeKey] as? Double {
+            self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
     }
 }

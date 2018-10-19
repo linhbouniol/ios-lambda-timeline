@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Posts Collection View Controller-->
+        <!--Posts-->
         <scene sceneID="JFE-md-uAO">
             <objects>
                 <collectionViewController id="hPa-Td-5A3" customClass="PostsCollectionViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,7 +163,7 @@
                             <outlet property="delegate" destination="hPa-Td-5A3" id="s19-fb-fqF"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="KIg-ug-6aP">
+                    <navigationItem key="navigationItem" title="Posts" id="KIg-ug-6aP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyx-zg-Fv9">
                             <connections>
                                 <action selector="addPost:" destination="hPa-Td-5A3" id="7DV-9r-fSz"/>
@@ -179,9 +179,9 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRz-lg-pQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5999999999999" y="-143.47826086956522"/>
+            <point key="canvasLocation" x="2076" y="-577"/>
         </scene>
-        <!--Title-->
+        <!--New Image Post-->
         <scene sceneID="kP9-yp-I8H">
             <objects>
                 <viewController id="1Aw-4e-BW2" customClass="ImagePostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,7 +190,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-If-ddw">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PkI-rS-ua9">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
@@ -200,6 +200,9 @@
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4eK-5F-H5h">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="271"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="4eK-5F-H5h" secondAttribute="height" multiplier="375:271" id="9SE-X2-rKj"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-cu-jHT">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="271"/>
@@ -232,7 +235,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-by-RF5">
-                                        <rect key="frame" x="10" y="317" width="355" height="182"/>
+                                        <rect key="frame" x="10" y="317" width="355" height="221"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HB2-lW-RzB">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -320,6 +323,24 @@
                                                     </slider>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pRY-tQ-EIZ">
+                                                <rect key="frame" x="0.0" y="190" width="355" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Save Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WuU-4S-Si3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="298" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jJo-gn-M7Y">
+                                                        <rect key="frame" x="306" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="saveCurrentLocation:" destination="1Aw-4e-BW2" eventType="valueChanged" id="T5B-2n-iM2"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                                <viewLayoutGuide key="safeArea" id="aoE-OW-bX8"/>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="PO4-yl-eiM" firstAttribute="width" secondItem="13F-KJ-l8x" secondAttribute="width" id="XLw-NW-m7E"/>
@@ -352,7 +373,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qkF-dc-a1P"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="uqG-mm-8CF">
+                    <navigationItem key="navigationItem" title="New Image Post" id="uqG-mm-8CF">
                         <barButtonItem key="rightBarButtonItem" title="Post" id="hsH-Uv-tug">
                             <connections>
                                 <action selector="createPost:" destination="1Aw-4e-BW2" id="RE6-qh-b62"/>
@@ -364,7 +385,9 @@
                         <outlet property="chooseImageButton" destination="VxD-cu-jHT" id="KVs-no-MbU"/>
                         <outlet property="contrastSlider" destination="tBS-wb-IK8" id="9dl-i8-ZLO"/>
                         <outlet property="hueSlider" destination="13F-KJ-l8x" id="dBe-3A-ObW"/>
+                        <outlet property="imageHeightConstraint" destination="9SE-X2-rKj" id="1O4-Do-ZXF"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
+                        <outlet property="locationSwitch" destination="jJo-gn-M7Y" id="SLw-Gd-BDI"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
                         <outlet property="posterizeSlider" destination="PO4-yl-eiM" id="a4j-Yt-4yE"/>
                         <outlet property="saturationSlider" destination="dG3-Wr-kLg" id="HqH-Qj-AzY"/>
@@ -373,12 +396,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045.5999999999999" y="-817.24137931034488"/>
+            <point key="canvasLocation" x="2841" y="-1433"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="gdW-Je-ais">
             <objects>
                 <navigationController storyboardIdentifier="PostsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ohA-ly-1Yj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="7cU-1d-RVO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XJY-X6-mEY">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -391,7 +415,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFJ-OO-MVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="-143"/>
+            <point key="canvasLocation" x="1260" y="-577"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="O74-ZV-TrY">
@@ -429,6 +453,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA4-1f-Wlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-274" y="-144"/>
+        </scene>
+        <!--Post Map-->
+        <scene sceneID="rzy-LR-L0n">
+            <objects>
+                <viewController id="efD-HS-UaR" customClass="MapViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sy1-vx-6kG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AyX-LO-pk3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="efD-HS-UaR" id="gM0-IB-yGW"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AyX-LO-pk3" firstAttribute="trailing" secondItem="Idk-BS-kTs" secondAttribute="trailing" id="R5i-ut-Bmf"/>
+                            <constraint firstItem="AyX-LO-pk3" firstAttribute="bottom" secondItem="Idk-BS-kTs" secondAttribute="bottom" id="bVB-dy-X3f"/>
+                            <constraint firstItem="AyX-LO-pk3" firstAttribute="top" secondItem="Idk-BS-kTs" secondAttribute="top" id="mry-XI-TlK"/>
+                            <constraint firstItem="AyX-LO-pk3" firstAttribute="leading" secondItem="Idk-BS-kTs" secondAttribute="leading" id="u4x-Nm-QRo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Idk-BS-kTs"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Post Map" id="wZ0-wO-NBR"/>
+                    <connections>
+                        <outlet property="mapView" destination="AyX-LO-pk3" id="EHD-jo-3W9"/>
+                        <segue destination="OyM-8q-Icp" kind="show" identifier="ViewImagePost" id="Pph-pd-H1Z"/>
+                        <segue destination="jYd-If-45b" kind="show" identifier="ViewVideoPost" id="fje-oJ-rRA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3MG-aE-g39" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="374"/>
         </scene>
         <!--Title-->
         <scene sceneID="Sdr-p5-ilf">
@@ -581,7 +640,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZK-Dx-Lmt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="925.60000000000002" y="626.53673163418296"/>
+            <point key="canvasLocation" x="3129" y="374"/>
         </scene>
         <!--Title-->
         <scene sceneID="9zi-Aq-zJI">
@@ -728,9 +787,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="627"/>
+            <point key="canvasLocation" x="3129" y="-578"/>
         </scene>
-        <!--Title-->
+        <!--New Video Post-->
         <scene sceneID="zU3-o4-qA4">
             <objects>
                 <viewController id="TJm-H9-Lbf" customClass="VideoPostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -739,10 +798,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Vh-5n-xq7" customClass="CameraPreviewView" customModule="LambdaTimeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0HB-4r-U29">
-                                        <rect key="frame" x="150" y="468" width="75" height="75"/>
+                                        <rect key="frame" x="150" y="419" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="N3B-pU-BMM"/>
                                             <constraint firstAttribute="width" constant="75" id="VJT-Wf-6CN"/>
@@ -753,11 +812,31 @@
                                             <action selector="toggleRecord:" destination="TJm-H9-Lbf" eventType="touchUpInside" id="EAZ-xN-xRy"/>
                                         </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5ZM-yd-nqg">
+                                        <rect key="frame" x="20" y="20" width="164" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Save Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLr-q1-Hnr">
+                                                <rect key="frame" x="0.0" y="0.0" width="107" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HO1-q7-thy">
+                                                <rect key="frame" x="115" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="saveCurrentLocation:" destination="TJm-H9-Lbf" eventType="valueChanged" id="fJK-IG-TMq"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="PKu-72-CGX"/>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="5ZM-yd-nqg" firstAttribute="leading" secondItem="1Vh-5n-xq7" secondAttribute="leading" constant="20" id="A7N-Lz-NAc"/>
                                     <constraint firstAttribute="bottom" secondItem="0HB-4r-U29" secondAttribute="bottom" constant="60" id="SHm-Pj-5vM"/>
                                     <constraint firstItem="0HB-4r-U29" firstAttribute="centerX" secondItem="1Vh-5n-xq7" secondAttribute="centerX" id="hKa-f4-f0s"/>
+                                    <constraint firstItem="5ZM-yd-nqg" firstAttribute="top" secondItem="1Vh-5n-xq7" secondAttribute="top" constant="20" id="tof-cR-28k"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -770,7 +849,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BBl-0L-1gu"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="qvh-Nm-lXs">
+                    <navigationItem key="navigationItem" title="New Video Post" id="qvh-Nm-lXs">
                         <barButtonItem key="rightBarButtonItem" title="Post" id="CVt-x2-qA0">
                             <connections>
                                 <action selector="createPost:" destination="TJm-H9-Lbf" id="IqD-IQ-lLT"/>
@@ -779,12 +858,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraPreviewView" destination="1Vh-5n-xq7" id="Nfr-Zt-3GO"/>
+                        <outlet property="locationSwitch" destination="HO1-q7-thy" id="WPM-k0-jTx"/>
                         <outlet property="recordButton" destination="0HB-4r-U29" id="nPS-mv-2Ns"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LM3-qV-X7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="-143"/>
+            <point key="canvasLocation" x="3524" y="-1434"/>
         </scene>
         <!--Text Comment View Controller-->
         <scene sceneID="lSE-YM-4aU">
@@ -825,7 +905,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eba-eo-98A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="990" y="1378"/>
+            <point key="canvasLocation" x="3916" y="374"/>
         </scene>
         <!--Audio Comment View Controller-->
         <scene sceneID="rxZ-y4-CWh">
@@ -884,7 +964,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Nr-Fn-Wbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1726" y="1445"/>
+            <point key="canvasLocation" x="3916" y="-578"/>
+        </scene>
+        <!--Post Tab Bar View Controller-->
+        <scene sceneID="4Q6-eE-Kz1">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Gxw-75-EDk" customClass="PostTabBarViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zgg-w0-1h8">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ohA-ly-1Yj" kind="relationship" relationship="viewControllers" id="BUM-Gd-ykd"/>
+                        <segue destination="Tk7-Qg-c7r" kind="relationship" relationship="viewControllers" id="J9Z-ol-1nD"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OHb-XB-ZeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="453.60000000000002" y="-143.47826086956522"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Vbl-ZY-ec5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tk7-Qg-c7r" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="xhg-Xp-8fg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yCK-hN-geB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="efD-HS-UaR" kind="relationship" relationship="rootViewController" id="Waj-sg-LSt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bg8-64-P9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1222" y="374"/>
         </scene>
     </scenes>
     <resources>
@@ -893,7 +1010,9 @@
         <image name="Record" width="116" height="116"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Now-jq-1Y6"/>
-        <segue reference="pFX-uk-W5E"/>
+        <segue reference="2v2-IU-dCm"/>
+        <segue reference="lZG-Zw-AZn"/>
+        <segue reference="hhs-es-AdQ"/>
+        <segue reference="odT-lF-mJj"/>
     </inferredMetricsTieBreakers>
 </document>
